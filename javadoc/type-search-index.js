@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"puzzle.solver","l":"BreadthFirstSearch"},{"p":"puzzle.solver","l":"Node"},{"p":"puzzle","l":"State"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"puzzle.solver","l":"BreadthFirstSearch"},{"p":"puzzle.solver","l":"Node"},{"p":"game","l":"State"},{"p":"puzzle","l":"State"}];updateSearchResults();
