@@ -8,26 +8,22 @@ import java.util.Set;
 /**
  * Represents the nodes of a search graph.
  *
- * @param <S> represents the state of a puzzle to be solved
  * @param <T> represents the moves that can be applied to the states
  */
-public class Node<S extends State<T>,T> {
+public class Node<T> {
 
-    private S state;
-    private Set<T> moves;
-    private Optional<Node> parent;
-    private Optional<T> move;
+    private final State<T> state;
+    private final Set<T> moves;
+    private final Node<T> parent;
+    private final T move;
 
     /**
      * Creates a {@code Node} without a parent, i.e., a root node.
      *
      * @param state the state represented by the node
      */
-    public Node(S state) {
-        this.state = state;
-        parent = Optional.empty();
-        move = Optional.empty();
-        moves = state.getLegalMoves();
+    public Node(State<T> state) {
+        this(state, null, null);
     }
 
     /**
@@ -37,16 +33,17 @@ public class Node<S extends State<T>,T> {
      * @param parent the parent of the node
      * @param move the move that created the state from the parent node
      */
-    public Node(S state, Node parent, T move) {
-        this(state);
-        this.parent = Optional.of(parent);
-        this.move = Optional.of(move);
+    public Node(State<T> state, Node<T> parent, T move) {
+        this.state = state;
+        this.moves = state.getLegalMoves();
+        this.parent = parent;
+        this.move = move;
     }
 
     /**
      * {@return the state represented by the node}
      */
-    public State getState() {
+    public State<T> getState() {
         return state;
     }
 
@@ -56,8 +53,8 @@ public class Node<S extends State<T>,T> {
      * @return an {@code Optional} describing the parent of the node, or an
      * empty optional if the node does not have a parent
      */
-    public Optional<Node> getParent() {
-        return parent;
+    public Optional<Node<T>> getParent() {
+        return Optional.ofNullable(parent);
     }
 
     /**
@@ -69,7 +66,7 @@ public class Node<S extends State<T>,T> {
      * have a parent
      */
     public Optional<T> getMove() {
-        return move;
+        return Optional.ofNullable(move);
     }
 
     /**
@@ -88,8 +85,8 @@ public class Node<S extends State<T>,T> {
      * @return an {@code Optional} describing the next child of the node, or an
      * empty {@code Optional} if there are no more children
      */
-    public Optional<Node> nextChild() {
-        if (! hasNextChild()) {
+    public Optional<Node<T>> nextChild() {
+        if (!hasNextChild()) {
             return Optional.empty();
         }
         var iterator = moves.iterator();
@@ -97,7 +94,7 @@ public class Node<S extends State<T>,T> {
         iterator.remove();
         var newState = state.clone();
         newState.makeMove(move);
-        return Optional.of(new Node(newState, this, move));
+        return Optional.of(new Node<>(newState, this, move));
     }
 
     @Override
@@ -115,7 +112,9 @@ public class Node<S extends State<T>,T> {
 
     @Override
     public String toString() {
-        return move.isPresent() ? String.format("%s %s", move.get(), state) : state.toString();
+        return Optional.ofNullable(move)
+                .map(value -> String.format("%s %s", value, state))
+                .orElseGet(state::toString);
     }
 
 }
