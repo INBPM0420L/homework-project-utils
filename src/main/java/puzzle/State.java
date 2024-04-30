@@ -16,12 +16,14 @@ public interface State<T> extends Cloneable {
 
     /**
      * {@return whether the move provided can be applied to the state}
+     *
      * @param move represents the move to be made
      */
     boolean isLegalMove(T move);
 
     /**
-     * Applies the move provided to the state.
+     * Applies the move provided to the state. This method should be called if
+     * and only if {@link #isLegalMove(Object)} returns {@code true}.
      *
      * @param move represents the move to be made
      */
