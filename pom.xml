@@ -15,6 +15,24 @@
             <email>jeszenszky.peter@inf.unideb.hu</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
         </developer>
+        <developer>
+            <id>márti</id>
+            <name>Márta Nagy</name>
+            <email>marta_nagy@epam.com</email>
+            <organization>EPAM Systems</organization>
+        </developer>
+        <developer>
+            <id>robi</id>
+            <name>Róbert Tóth</name>
+            <email>toth.robert@inf.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+        </developer>
+        <developer>
+            <id>roland</id>
+            <name>Sándor Roland Major</name>
+            <email>major.sandor@inf.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+        </developer>
     </developers>
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
