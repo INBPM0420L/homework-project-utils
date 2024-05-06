@@ -1,4 +1,6 @@
 game
+game.console
 game.util
 puzzle
 puzzle.solver
+puzzle.util
