@@ -4,3 +4,5 @@ game.util
 puzzle
 puzzle.solver
 puzzle.util
+util
+util.javafx
