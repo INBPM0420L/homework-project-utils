@@ -52,6 +52,12 @@
             <version>${javafx.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>de.audioattack.io</groupId>
+            <artifactId>console</artifactId>
+            <version>1.2.1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

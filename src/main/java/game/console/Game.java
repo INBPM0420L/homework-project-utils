@@ -1,11 +1,13 @@
 package game.console;
 
-import game.State;
-
-import java.io.Console;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+
+import de.audioattack.io.Console;
+import de.audioattack.io.ConsoleCreator;
+
+import game.State;
 
 /**
  * Conducts a two-player game on the console. It uses a {@link Function} to
@@ -46,12 +48,9 @@ public abstract class Game<S extends State,T> {
      * @param state the state from which the game is started
      * @param parser a function that converts a line read from the console to a
      *               move
-     * @throws AssertionError if the console is not available
      */
     public Game(S state, Function<String, T> parser) {
-        if ((console = System.console()) == null) {
-            throw new AssertionError("Console is not available");
-        }
+        console = ConsoleCreator.console();
         Objects.requireNonNull(state);
         Objects.requireNonNull(parser);
         this.state = state;
