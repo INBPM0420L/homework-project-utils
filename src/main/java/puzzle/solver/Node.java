@@ -100,7 +100,7 @@ public class Node<T> {
     @Override
     public boolean equals(Object o) {
         if (o == this) {
-            return false;
+            return true;
         }
         return (o instanceof Node other) && state.equals(other.getState());
     }
